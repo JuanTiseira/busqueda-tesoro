@@ -35,28 +35,28 @@ const App: React.FC = () => {
       password: "", // No necesita contraseña
       message: `Gracias por ser la persona más especial en mi vida, Paoli.  
                 Eres mi razón para sonreír cada día,  
-                mi refugio en los momentos difíciles,  
-                y mi mayor alegría en los buenos momentos.  
+                desde que te conoci mi vida cambio.  
                 ¡Te amo con todo mi corazón! 💕`,
     },
     {
-      pista: "Pista 1: Busca en el lugar donde siempre tomamos café. 💕",
+      pista: "Pista 1: Busca en el poste frente al estudio, tenes que encontrar un codigo QR ¡Escanealo! 💕",
       password: "cafe",
-      message: `¡Bien hecho, mi amor!  
-                La próxima pista está en el lugar de nuestros recuerdos de viaje.  
-                Recuerda aquel día en que todo comenzó a ser aún más especial. 🌍`,
+      message: `¡Bien hecho, mi amor, jaja encontraste la primer contraseña!  
+                La próxima pista está en la plaza frente al duomo, te acordas la tormenta
+                y esa lluvia fria?. 🌍`,
     },
     {
-      pista: "Pista 2: Busca en el lugar donde guardamos nuestros recuerdos de viaje. ✈️",
+      pista: "Pista 2: Busca en la plaza donde en el pasto frente al duomo, en algun arbol? jaja ✈️",
       password: "recuerdos",
-      message: `¡Excelente, mi vida!  
-                La última pista está en el lugar de nuestro primer beso.  
+      message: `¡Excelente, mi vida, sos buena para buscar tesoros!  
+                La última pista está en el lugar donde te pedi para ser novios, 
+                osea la plaza jaja.  
                 Ese momento que cambió todo para siempre. 💋`,
     },
     {
-      pista: "Pista 3: Busca en el lugar donde nos dimos nuestro primer beso. 💏",
+      pista: "Pista 3: Busca en la plaza en el arbolito de siempre. 💏",
       password: "beso",
-      message: `¡Felicidades, mi amor!  
+      message: `¡Felicidades, mi amor, encontraste todos las contraseñas!  
                 Has encontrado el tesoro más valioso: nuestro amor.  
                 Eres la persona más especial en mi vida,  
                 y quiero pasar el resto de mis días a tu lado.  
@@ -93,7 +93,7 @@ const App: React.FC = () => {
       setTimeout(() => {
         setCurrentStep(step + 1);
         setMessage("");
-      }, 3000); // Espera 3 segundos antes de avanzar
+      }, 20000); // Espera 3 segundos antes de avanzar
     } else {
       alert("Contraseña incorrecta. ¡Segui buscando! 💔");
     }
