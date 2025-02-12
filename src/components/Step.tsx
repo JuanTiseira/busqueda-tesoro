@@ -2,29 +2,50 @@ import React from "react";
 
 interface StepProps {
   step: number;
+  title: string
   pista: string;
-  message?: string;
+  message: string;
+  isPasswordCorrect: boolean;
   onPasswordSubmit: (step: number) => void;
+  onNextStep: () => void;
 }
 
-const Step: React.FC<StepProps> = ({ step, pista, onPasswordSubmit, message }) => {
+const Step: React.FC<StepProps> = ({
+  step,
+  title,
+  pista,
+  message,
+  isPasswordCorrect,
+  onPasswordSubmit,
+  onNextStep,
+}) => {
   return (
-    <div className="step-box">
-      <p className="pista">{pista}</p>
-      {message && <p className="message">💖 {message}</p>}
-      {step !== 0 && ( // No mostrar el campo de contraseña en el paso 0
-        <>
-          <input
-            type="text"
-            placeholder="Introduce la contraseña"
-            id={`password-${step}`}
-            className="password-input"
-          />
-          <button onClick={() => onPasswordSubmit(step)} className="submit-button">
-            Verificar
-          </button>
-        </>
-      )}
+    <div className="step dedicatoria">
+      <h1>{title}</h1>
+      {isPasswordCorrect || step === 4 ? "" : <div><h2>Pista {step}</h2>
+      <p>{pista}</p></div>}
+      
+      {message && <p className="message">{message}</p>}
+      
+      <div>
+      {isPasswordCorrect || step === 4 ? "" : <div><input
+        type="password"
+        id={`password-${step}`}
+        placeholder="Ingresa la contraseña"
+        className="password-input"
+      />
+      </div>}
+      </div>
+     
+  
+      <button
+        onClick={() =>
+          isPasswordCorrect ? onNextStep() : onPasswordSubmit(step)
+        }
+        className="comenzar-button"
+      >
+        {isPasswordCorrect ? "Siguiente" : "Verificar"}
+      </button>
     </div>
   );
 };

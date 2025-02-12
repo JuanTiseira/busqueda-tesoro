@@ -7,6 +7,7 @@ const App: React.FC = () => {
   const [message, setMessage] = useState<string>("");
   const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [timeLeft, setTimeLeft] = useState<string>("");
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState<boolean>(false); // Nuevo estado
   const audioRef = useRef<HTMLAudioElement | null>(null); // Referencia para el audio
 
   // Fecha objetivo: 14 de febrero a las 05:00 AM
@@ -57,36 +58,49 @@ const App: React.FC = () => {
 
   const steps = [
     {
+      title: "A jugar!!",
       pista: "💖 Para mi amor 💖",
       password: "", // No necesita contraseña
       message: `Gracias por ser la persona más especial en mi vida, Paoli.  
-                Eres mi razón para sonreír cada día,  
-                desde que te conoci mi vida cambio.  
-                ¡Te amo con todo mi corazón! 💕`,
+                Sos mi razón para sonreír cada día,  
+                desde que te conocí mi vida cambió (ahora no duermo).  
+                ¡Te amo, corazón! 💕`,
     },
     {
-      pista: "Pista 1: Busca en el poste frente al estudio, tenes que encontrar un codigo QR ¡Escanealo! 💕",
-      password: "cafe",
-      message: `¡Bien hecho, mi amor, jaja encontraste la primer contraseña!  
-                La próxima pista está en la plaza frente al duomo, te acordas la tormenta
-                y esa lluvia fria?. 🌍`,
+      title: "Pasantias",
+      pista: `Muy bien jaja, decidiste comenzar con el juego.  
+              Pista 1: Busca en el poste frente al estudio,  
+              tenés que encontrar un código QR. ¡Escanealo! 💕`,
+      password: "primerbeso",
+      message: `¡Bien hecho, mi amor, jaja encontraste la primera contraseña!  
+                La próxima pista está en la plaza frente al Duomo, ¿te acordás de la tormenta  
+                y esa lluvia fría? 🌍`,
     },
     {
-      pista: "Pista 2: Busca en la plaza donde en el pasto frente al duomo, en algun arbol? jaja ✈️",
+      title: "Tormenta",
+      pista: `Pista 2: Busca en la plaza, en el pasto frente al Duomo,  
+              ¿en algún árbol? jaja ✈️`,
       password: "momentos",
       message: `¡Excelente, mi vida, sos buena para buscar tesoros!  
-                La última pista está en el lugar donde te pedi para ser novios, 
-                osea la plaza jaja.  
+                La última pista está en el lugar donde te pedí para ser novios,  
+                o sea, la plaza jaja.  
                 Ese momento que cambió todo para siempre. 💋`,
     },
     {
-      pista: "Pista 3: Busca en la plaza en el arbolito de siempre. 💏",
+      title: "Novios",
+      pista: `Pista 3: Busca en la plaza, en el arbolito de siempre. 💏`,
       password: "beso",
-      message: `¡Felicidades, mi amor, encontraste todos las contraseñas!  
+      message: `¡Felicidades, mi amor, encontraste todas las contraseñas!  
                 Has encontrado el tesoro más valioso: nuestro amor.  
-                Eres la persona más especial en mi vida,  
-                y quiero pasar el resto de mis días a tu lado.  
+                Sos la persona más especial en mi vida, y quiero pasar el resto de mis días a tu lado.  
                 Te amo. 💖🎉`,
+    },
+    {
+      title: "Lo lograste!",
+      pista: "💖 Podes reclamarme tu premio 💖",
+      password: "", // No necesita contraseña
+      message: `La verdad no esperaba que lo completes jaja, 
+                pero bueno ahora estoy en deuda, enviame las contraseñas y vas a obtener tu regalo💕`,
     },
   ];
 
@@ -116,13 +130,16 @@ const App: React.FC = () => {
       setMessage(steps[step].message || "");
       playVictorySound();
       triggerConfetti();
-      setTimeout(() => {
-        setCurrentStep(step + 1);
-        setMessage("");
-      }, 20000); // Espera 20 segundos antes de avanzar
+      setIsPasswordCorrect(true); // Cambiar el estado a "correcto"
     } else {
-      alert("Contraseña incorrecta. ¡Segui buscando! 💔");
+      alert("Contraseña incorrecta. ¡Seguí buscando! 💔");
     }
+  };
+
+  const handleNextStep = () => {
+    setCurrentStep((prevStep) => prevStep + 1); // Avanzar al siguiente paso
+    setMessage(""); // Limpiar el mensaje
+    setIsPasswordCorrect(false); // Reiniciar el estado del botón
   };
 
   return (
@@ -153,17 +170,20 @@ const App: React.FC = () => {
             Comenzar
           </button>
         </div>
-      ) : currentStep <= steps.length ? (
+      ) : currentStep < steps.length - 1 ? (
         <Step
           step={currentStep}
+          title={steps[currentStep].title}
           pista={steps[currentStep].pista}
           onPasswordSubmit={handlePasswordSubmit}
+          onNextStep={handleNextStep} // Pasar la función para avanzar
           message={message}
+          isPasswordCorrect={isPasswordCorrect} // Pasar el estado de la contraseña
         />
       ) : (
-        <div className="final-message">
-          <h2>¡Felicidades! Terminaste el juego vos ganaste!. 💖🎉</h2>
-          <p>Eres la persona más especial en mi vida. Te amo. 💕</p>
+        <div className="final-message dedicatoria">
+          <h1>{steps[steps.length - 1].title}</h1>
+          <p className="dedicatoria-mensaje">{steps[steps.length - 1].message}</p>
         </div>
       )}
     </div>

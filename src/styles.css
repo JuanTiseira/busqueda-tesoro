@@ -39,7 +39,9 @@
         color: #ff69b4;
         margin-bottom: 20px;
     }
-    
+    .dedicatoria-mensaje, .pista-mensaje {
+        white-space: pre-line;
+    }
     .comenzar-button {
         padding: 10px 20px;
         background-color: #ff69b4;
