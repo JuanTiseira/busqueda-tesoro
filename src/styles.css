@@ -207,3 +207,18 @@
         color: #fff;
         font-size: 2.5rem;
     }
+    .countdown {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1.5em;
+        color: #ff4081;
+    }
+      
+    .countdown h2 {
+        margin-bottom: 10px;
+    }
+      
+    .countdown p {
+        font-size: 2em;
+        font-weight: bold;
+    }

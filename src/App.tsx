@@ -5,7 +5,12 @@ import confetti from "canvas-confetti";
 const App: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<number>(0); // Paso 0 es la dedicatoria
   const [message, setMessage] = useState<string>("");
+  const [gameStarted, setGameStarted] = useState<boolean>(false);
+  const [timeLeft, setTimeLeft] = useState<string>("");
   const audioRef = useRef<HTMLAudioElement | null>(null); // Referencia para el audio
+
+  // Fecha objetivo: 14 de febrero a las 05:00 AM
+  const targetDate = new Date("2025-02-14T05:00:00");
 
   // Efecto para configurar el audio
   useEffect(() => {
@@ -19,6 +24,27 @@ const App: React.FC = () => {
       }
     };
   }, []);
+
+  // Efecto para calcular el tiempo restante
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const difference = targetDate.getTime() - now.getTime();
+
+      if (difference <= 0) {
+        setGameStarted(true); // El juego puede comenzar
+        clearInterval(interval);
+        setTimeLeft("");
+      } else {
+        const hours = Math.floor(difference / (1000 * 60 * 60));
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+        setTimeLeft(`${hours}h ${minutes}m ${seconds}s`);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [targetDate]);
 
   // Función para iniciar la música
   const startMusic = () => {
@@ -47,7 +73,7 @@ const App: React.FC = () => {
     },
     {
       pista: "Pista 2: Busca en la plaza donde en el pasto frente al duomo, en algun arbol? jaja ✈️",
-      password: "recuerdos",
+      password: "momentos",
       message: `¡Excelente, mi vida, sos buena para buscar tesoros!  
                 La última pista está en el lugar donde te pedi para ser novios, 
                 osea la plaza jaja.  
@@ -93,7 +119,7 @@ const App: React.FC = () => {
       setTimeout(() => {
         setCurrentStep(step + 1);
         setMessage("");
-      }, 20000); // Espera 3 segundos antes de avanzar
+      }, 20000); // Espera 20 segundos antes de avanzar
     } else {
       alert("Contraseña incorrecta. ¡Segui buscando! 💔");
     }
@@ -115,7 +141,12 @@ const App: React.FC = () => {
         <h1>💖 Búsqueda del Tesoro 💖</h1>
       </div>
 
-      {currentStep === 0 ? (
+      {!gameStarted ? (
+        <div className="countdown">
+          <h2>El juego comenzará en:</h2>
+          <p>{timeLeft}</p>
+        </div>
+      ) : currentStep === 0 ? (
         <div className="dedicatoria">
           <p className="dedicatoria-mensaje">{steps[0].message}</p>
           <button onClick={() => handlePasswordSubmit(0)} className="comenzar-button">
