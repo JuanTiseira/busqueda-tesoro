@@ -10,7 +10,7 @@ const App: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null); // Referencia para el audio
 
   // Fecha objetivo: 14 de febrero a las 05:00 AM
-  const targetDate = new Date("2025-02-14T05:00:00");
+  const targetDate = new Date("2024-02-14T05:00:00");
 
   // Efecto para configurar el audio
   useEffect(() => {
