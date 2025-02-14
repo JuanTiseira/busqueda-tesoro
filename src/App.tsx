@@ -68,18 +68,23 @@ const App: React.FC = () => {
     },
     {
       title: "Pasantias",
-      pista: `Muy bien jaja, decidiste comenzar con el juego.  
-              Pista 1: Busca en el poste frente al estudio,  
-              tenés que encontrar un código QR. ¡Escanealo! 💕`,
+      pista: `Muy bien decidiste comenzar con el juego. Vas a buscar 
+              los codigos QR donde indica cada pista...
+              Busca una tienda que se llama Puro Bienestar,
+              esta a la vuelta del estudio por junin.  
+              tenés que encontrar un código QR, no necesitas entrar a la tienda! cerca de la pared del lado izquierdo, esta en el vidrio. ¡Escanealo! 
+              y Ingresa la contraseña para desbloquear el siguiente paso 💕`,
       password: "primerbeso",
-      message: `¡Bien hecho, mi amor, jaja encontraste la primera contraseña!  
-                La próxima pista está en la plaza frente al Duomo, ¿te acordás de la tormenta  
-                y esa lluvia fría? 🌍`,
+      message: `¡Bien hecho, mi amor, jaja encontraste la primer contraseña!  
+                La próxima pista está en la plaza frente al Duomo donde tomamos helado.
+                ¿Te acordás de la tormenta y esa lluvia fría? 🌍`,
     },
     {
       title: "Tormenta",
-      pista: `Pista 2: Busca en la plaza, en el pasto frente al Duomo,  
-              ¿en algún árbol? jaja ✈️`,
+      pista: `Busca en la plaza, frente al Duomo de la Peron,  
+              ¿en algún árbol? algun arbol grande el mas grande frente al Duomo, 
+              ese mismo que te dije para escalarlo, bueno ahora escalalo jaja
+              Mentira busca en la horqueta del arbol ✈️`,
       password: "momentos",
       message: `¡Excelente, mi vida, sos buena para buscar tesoros!  
                 La última pista está en el lugar donde te pedí para ser novios,  
@@ -88,11 +93,14 @@ const App: React.FC = () => {
     },
     {
       title: "Novios",
-      pista: `Pista 3: Busca en la plaza, en el arbolito de siempre. 💏`,
+      pista: `Busca en la plaza, en el arbolito donde siempre 
+              nos sentamos bajo su sombra, aunque sea de noche jaja (nos gusta el oscuro). 💏
+              Bueno abajo del arbolito hay una piedra, levantala ahi esta el QR`,
       password: "beso",
-      message: `¡Felicidades, mi amor, encontraste todas las contraseñas!  
-                Has encontrado el tesoro más valioso: nuestro amor.  
-                Sos la persona más especial en mi vida, y quiero pasar el resto de mis días a tu lado.  
+      message: `¡Felicidades, mi amor, superaste el juego!  
+                "Gracias por compartir este camino conmigo, lleno de emociones y sorpresas, 
+                igual que este juego que refleja nuestro amor: un viaje único e inolvidable. 
+                No importa lo que venga, estoy listo para recorrerlo a tu lado, construyendo juntos un amor que siempre nos sorprenda."  
                 Te amo. 💖🎉`,
     },
     {
